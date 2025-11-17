@@ -48,7 +48,7 @@ En `Program/Main` inyectamos la implementación concreta `RepositorioLibrosEnMem
 | | `RepositorioLibrosMemoria.cs` | Solo se encarga del almacenamiento y consulta de libros en memoria. | Si cambia la forma de persistencia, solo cambia el repositorio, no el dominio ni los servicios. |
 | | `BibliotecaService.cs` | Contiene solo lógica de negocio (prestamos y devoluciones). | Si cambian reglas de negocio, solo se modifica esta clase, no el dominio ni los repositorios. |
 | OCP | `IReglaPrestamo.cs` | Interfaz define: `int LimiteLibros`, `int DiasPrestamo` | Se puede extender con nuevas reglas sin modificar el código existente. |
-| | `ReglaEstudiante.cs` <br/> `ReglaDocente.cs` <br/> `ReglaExterno.cs` | Cada clase implementa distintas políticas de préstamo. | Para añadir un nuevo tipo (p. ej. “Administrador”), solo creas una nueva clase que implemente IReglaPrestamo → NO se modifica el servicio.|
+| | `ReglaEstudiante.cs` <br/> `ReglaDocente.cs` <br/> `ReglaExterno.cs` | Cada clase implementa distintas políticas de préstamo. | Para añadir un nuevo tipo (p. ej. “Administrador”), solo se crea una nueva clase que implemente IReglaPrestamo → NO se modifica el servicio.|
 | | `FrabricaReglasPrestamo.cs` | Devuelve la regla según el tipo. | Permite ampliar el sistema sin tocar `BibliotecaService`. |
 | | `BibliotecaService.cs` | `var regla = FabricaReglasPrestamo.ObtenerRegla(usuario.Tipo);` | El servicio no sabe los detalles de las reglas → queda abierto a extensión y cerrado a modificación. |
 | DIP | `IBibliotecaService.cs` | El servicio depende de una abstracción. | Permite sustituir implementaciones sin tocar la capa de negocio. |
