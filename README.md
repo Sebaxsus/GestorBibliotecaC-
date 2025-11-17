@@ -1,4 +1,29 @@
-﻿## SRP (Single Responsibility):
+﻿## Como descargar el programa
+
+Abre una consola en la ruta que quiera descargar el programa y ejecute
+```bash
+git clone https://github.com/Sebaxsus/GestorBibliotecaC-.git
+```
+
+## Como ejecutar el Programa
+
+```bash
+cd GestorBibliotecaDigital_DiseñoSoft11_2025
+dotnet run
+```
+
+## Como compilar el programa
+
+```bash
+dotnet build
+dotnet bin/Debug/net8.0/TuProyecto.dll
+```
+
+> [!NOTE]
+>
+> en la ruta `dotnet bin/Debug/net8.0/TuProyecto.dll` sustituya `/net.8.0/` con la version de .net instalada en su maquina.
+
+## SRP (Single Responsibility):
 
 `Libro`, `Usuario`, `Prestamo` solo contienen datos y lógica pequeña propia.
 
