@@ -52,7 +52,13 @@
     <Compile Include="repositories\IRepositorioLibros.cs" />
     <Compile Include="repositories\RepositorioLibrosMemoria.cs" />
     <Compile Include="services\BibliotecaService.cs" />
+    <Compile Include="services\ReglaEncargado.cs" />
+    <Compile Include="services\FabricaReglasPrestamo.cs" />
     <Compile Include="services\IBibliotecaService.cs" />
+    <Compile Include="services\IReglaPrestamo.cs" />
+    <Compile Include="services\ReglaDocente.cs" />
+    <Compile Include="services\ReglaEstudiante.cs" />
+    <Compile Include="services\ReglaExterno.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

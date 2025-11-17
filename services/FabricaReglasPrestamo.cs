@@ -29,6 +29,11 @@ namespace GestorBibliotecaDigital_DiseñoSoft11_2025.services
                         regla = new ReglaExterno();
                         break;
                     }
+                case TipoUsuario.Encargado:
+                    {
+                        regla = new ReglaEncargado();
+                        break;
+                    }
                 default:
                     {
                         throw new Exception("Tipo de usuario no soportado");

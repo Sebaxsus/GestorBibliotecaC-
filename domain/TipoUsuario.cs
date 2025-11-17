@@ -10,6 +10,7 @@ namespace GestorBibliotecaDigital_DiseñoSoft11_2025.domain
     {
         Estudiante,
         Docente,
-        Externo, // Trailing coma 
+        Externo, // Trailing coma
+        Encargado,
     }
 }
