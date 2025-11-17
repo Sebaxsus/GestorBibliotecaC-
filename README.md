@@ -30,3 +30,173 @@ En `Program/Main` inyectamos la implementación concreta `RepositorioLibrosEnMem
 | | `IRepositorioLibros.cs` | El repositorio es una interfaz. | El servicio usa solo la interfaz, no la implementación concreta. |
 | | `Program.cs` | `var repoLibros = new RepositorioLibrosMemoria(); IBibliotecaService servicio = new BibliotecaService(repoLibros);` | Se cumple DIP porque la creación de dependencias está fuera del servicio. |
 | | `FabricaReglasPrestamo.cs` | Devuelve una instancia de una regla basada en la abstracción `IReglaPrestamo`. | `BibliotecaService` depende de la interfaz, no de las clases concretas de reglas. |
+
+
+```mermaid
+classDiagram
+    class Usuario {
+        -string Id
+        -string Nombre
+        -TipoUsuario Tipo
+    }
+
+    class TipoUsuario {
+        <<enumeration>>
+        Estudiante
+        Docente
+        Externo
+    }
+
+    class Libro {
+        -string ISBN
+        -string Titulo
+        -string Autor
+        -int Año
+        -string Categoria
+        -bool Disponible
+        +Prestar()
+        +Devolver()
+    }
+
+    class Prestamo {
+        -string Id
+        -Libro Libro
+        -Usuario Usuario
+        -DateTime FechaPrestamo
+        -DateTime FechaDevEsp
+        -DateTime FechaDevolucion
+        +RegistrarDevolucion()
+        +DiasRetraso()
+        +CalcularMulta()
+    }
+
+    class IRepositorioLibros {
+        <<interface>>
+        +Agregar(Libro)
+        +ObtenerPorISBN(string)
+        +BuscarPorTitulo(string)
+        +BuscarPorAutor(string)
+        +BuscarPorCategoria(string)
+        +ObtenerTodos()
+    }
+
+    class RepositorioLibrosMemoria {
+        +Agregar(Libro)
+        +ObtenerPorISBN(string)
+        +BuscarPorTitulo(string)
+        +BuscarPorAutor(string)
+        +BuscarPorCategoria(string)
+        +ObtenerTodos()
+    }
+
+    class IBibliotecaService {
+        <<interface>>
+        +RegistrarLibro(Libro)
+        +RegistrarUsuario(Usuario)
+        +PrestarLibro(string, string)
+        +DevolverLibro(string)
+    }
+
+    class BibliotecaService {
+        -IRepositorioLibros repoLibros
+        -Dictionary~string,Usuario~ usuarios
+        -List~Prestamo~ prestamos
+        +RegistrarLibro(Libro)
+        +RegistrarUsuario(Usuario)
+        +PrestarLibro(string, string)
+        +DevolverLibro(string)
+    }
+
+    class IReglaPrestamo {
+        <<interface>>
+        +get LimiteLibros
+        +get DiasPrestamo
+    }
+
+    class ReglaEstudiante {
+        +LimiteLibros
+        +DiasPrestamo
+    }
+
+    class ReglaDocente {
+        +LimiteLibros
+        +DiasPrestamo
+    }
+
+    class ReglaExterno {
+        +LimiteLibros
+        +DiasPrestamo
+    }
+
+    class FabricaReglasPrestamo {
+        +ObtenerRegla(tipoUsuario) IReglaPrestamo
+    }
+
+    %% Relaciones
+    Usuario --> TipoUsuario
+    Prestamo --> Usuario
+    Prestamo --> Libro
+
+    IRepositorioLibros <|.. RepositorioLibrosMemoria
+    IBibliotecaService <|.. BibliotecaService
+
+    IReglaPrestamo <|.. ReglaEstudiante
+    IReglaPrestamo <|.. ReglaDocente
+    IReglaPrestamo <|.. ReglaExterno
+
+    BibliotecaService --> IRepositorioLibros
+    BibliotecaService --> IReglaPrestamo : usa via fábrica
+    FabricaReglasPrestamo --> IReglaPrestamo
+```
+
+```mermaid
+flowchart TD
+    actorUsuario([Usuario])
+
+    subgraph SistemaBiblioteca [Sistema de Gestión de Biblioteca Digital]
+        CU1[Registrar Libro]
+        CU2[Registrar Usuario]
+        CU3[Prestar Libro]
+        CU4[Devolver Libro]
+        CU5[Consultar Libros]
+        CU6[Buscar Libro]
+    end
+
+    actorUsuario --> CU2
+    actorUsuario --> CU3
+    actorUsuario --> CU4
+    actorUsuario --> CU5
+    actorUsuario --> CU6
+
+    %% Solo personal autorizado
+    actorUsuario --> CU1
+```
+
+```mermaid
+flowchart LR
+    subgraph domain [📦 domain]
+        D1[Libro]
+        D2[Usuario]
+        D3[Prestamo]
+        D4[TipoUsuario]
+    end
+
+    subgraph services[📦 services]
+        S1[IBibliotecaService]
+        S2[BibliotecaService]
+        S3[IReglaPrestamo]
+        S4[Reglas Prestamo]
+        S5[FabricaReglasPrestamo]
+    end
+
+    subgraph repositories[📦 repositories]
+        R1[IRepositorioLibros]
+        R2[RepositorioLibrosMemoria]
+    end
+
+    Main[Main.cs] --> services
+    services --> repositories
+    services --> domain
+    repositories --> domain
+
+```
