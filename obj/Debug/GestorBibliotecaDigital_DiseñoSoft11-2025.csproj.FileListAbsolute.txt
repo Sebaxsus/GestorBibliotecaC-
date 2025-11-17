@@ -1,0 +1,8 @@
+C:\Users\sebax\Desktop\Universidad\C#\MetricasDeSoftware\GestorBibliotecaDigital_DiseñoSoft11-2025\obj\Debug\GestorBibliotecaDigital_DiseñoSoft11-2025.csproj.AssemblyReference.cache
+C:\Users\sebax\Desktop\Universidad\C#\MetricasDeSoftware\GestorBibliotecaDigital_DiseñoSoft11-2025\obj\Debug\GestorBibliotecaDigital_DiseñoSoft11-2025.csproj.SuggestedBindingRedirects.cache
+C:\Users\sebax\Desktop\Universidad\C#\MetricasDeSoftware\GestorBibliotecaDigital_DiseñoSoft11-2025\obj\Debug\GestorBibliotecaDigital_DiseñoSoft11-2025.csproj.CoreCompileInputs.cache
+C:\Users\sebax\Desktop\Universidad\C#\MetricasDeSoftware\GestorBibliotecaDigital_DiseñoSoft11-2025\bin\Debug\GestorBibliotecaDigital_DiseñoSoft11-2025.exe.config
+C:\Users\sebax\Desktop\Universidad\C#\MetricasDeSoftware\GestorBibliotecaDigital_DiseñoSoft11-2025\bin\Debug\GestorBibliotecaDigital_DiseñoSoft11-2025.exe
+C:\Users\sebax\Desktop\Universidad\C#\MetricasDeSoftware\GestorBibliotecaDigital_DiseñoSoft11-2025\bin\Debug\GestorBibliotecaDigital_DiseñoSoft11-2025.pdb
+C:\Users\sebax\Desktop\Universidad\C#\MetricasDeSoftware\GestorBibliotecaDigital_DiseñoSoft11-2025\obj\Debug\GestorBibliotecaDigital_DiseñoSoft11-2025.exe
+C:\Users\sebax\Desktop\Universidad\C#\MetricasDeSoftware\GestorBibliotecaDigital_DiseñoSoft11-2025\obj\Debug\GestorBibliotecaDigital_DiseñoSoft11-2025.pdb
